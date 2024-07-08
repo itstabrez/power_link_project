@@ -28,24 +28,61 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
               left: 0,
               right: 0,
               child: Container(
+                margin:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 color: Colors.white, // Background color of the tiles container
                 height: 150, // Height of the tiles container
-                child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                child: PageView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                    Container(
+                      padding: EdgeInsets.all(8),
                       child: ListTile(
-                        title: const Text(
-                          "Hello There",
+                        title: Text(
+                          "Electric Vehicle Charging Station 1",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
+                        subtitle: Text("Location 1"),
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                    Container(
+                      padding: EdgeInsets.all(8),
                       child: ListTile(
-                        title: Text("Another tile"),
+                        title: Text(
+                          "Electric Vehicle Charging Station 2",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text("Location 2"),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      child: ListTile(
+                        title: Text(
+                          "Electric Vehicle Charging Station 3",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text("Location 3"),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      child: ListTile(
+                        title: Text(
+                          "Electric Vehicle Charging Station 4",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text("Location 4"),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      child: ListTile(
+                        title: Text(
+                          "Electric Vehicle Charging Station 5",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text("Location 5"),
                       ),
                     ),
                   ],
