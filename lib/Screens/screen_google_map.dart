@@ -11,23 +11,49 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: controllerr.collegePatna,
-          zoom: 20,
+      body: Obx(
+        () => Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: controllerr.chargingStation,
+                zoom: 14,
+              ),
+              markers: controllerr.markers.toSet(),
+              onMapCreated: (GoogleMapController controller) {},
+            ),
+            // Horizontal ListTiles at the bottom
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: Colors.white, // Background color of the tiles container
+                height: 150, // Height of the tiles container
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ListTile(
+                        title: const Text(
+                          "Hello There",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ListTile(
+                        title: Text("Another tile"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        markers: {
-          Marker(
-            markerId: const MarkerId("currentLocation"),
-            icon: BitmapDescriptor.defaultMarker,
-            position: controllerr.collegePatna,
-          ),
-          Marker(
-            markerId: const MarkerId("destination"),
-            icon: BitmapDescriptor.defaultMarker,
-            position: controllerr.haroonColony,
-          ),
-        },
       ),
     );
   }
