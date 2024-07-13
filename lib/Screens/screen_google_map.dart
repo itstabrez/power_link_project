@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
@@ -34,15 +35,18 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
                 height: 150, // Height of the tiles container
                 child: PageView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: ListTile(
-                        title: Text(
-                          "Electric Vehicle Charging Station 1",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        child: ListTile(
+                          title: Text(
+                            "Electric Vehicle Charging Station 1",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text("Location 1"),
                         ),
-                        subtitle: Text("Location 1"),
                       ),
                     ),
                     Container(

@@ -6,7 +6,7 @@ class AppPages {
   static final List<GetPage> pages = [
     GetPage(
       name: ScreenHomePage.pageId,
-      page: () => const ScreenHomePage(),
+      page: () => ScreenHomePage(),
     ),
     GetPage(
       name: ScreenGoogleMapScreen.pageId,
