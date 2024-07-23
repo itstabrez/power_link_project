@@ -1,40 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
 
-class BottomListTiles extends GetView<BottomListTiles> {
+class BottomListTiles extends StatelessWidget {
   BottomListTiles({super.key});
 
   final controllerr = Get.put(ControllersGoogleMapScreen());
+
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      scrollDirection: Axis.horizontal,
+    return CarouselSlider.builder(
+      options: CarouselOptions(
+        viewportFraction: 1,
+        initialPage: 0,
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 5),
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
+        autoPlayCurve: Curves.easeOutSine,
+        scrollDirection: Axis.horizontal,
+      ),
       itemCount: controllerr.locations.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (context, index, realIndex) {
         return GestureDetector(
           onTap: () {
             // Handle tap event
           },
           child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
             padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 5,
+                  spreadRadius: 1,
+                ),
+              ],
+              color: Colors.white,
+            ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Image at the bottom
-                Image.asset(
-                  controllerr.images[index],
-                  fit: BoxFit.cover,
-                  width: 130,
-                  height: 150,
+                // Image shown in tiles
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    controllerr.images[index],
+                    fit: BoxFit.cover,
+                    width: 130,
+                    height: 150,
+                  ),
                 ),
                 Expanded(
+                  // Name of charging stations
                   child: ListTile(
                     title: Text(
                       controllerr.locations[index]["name"],
                       style: const TextStyle(fontWeight: FontWeight.bold),
-                      maxLines: 2,
+                      maxLines: 1,
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,8 +82,9 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                   Icons.access_time,
                                   size: 18,
                                 ),
-                                Text(controllerr.locations[index]
-                                    ["availablity"]),
+                                Text(
+                                  controllerr.locations[index]["availablity"],
+                                ),
                               ],
                             ),
                             Row(
@@ -68,7 +93,9 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                   Icons.location_pin,
                                   size: 18,
                                 ),
-                                Text(controllerr.locations[index]["distance"]),
+                                Text(
+                                  controllerr.locations[index]["distance"],
+                                ),
                               ],
                             ),
                             Row(
@@ -77,7 +104,9 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                   Icons.star,
                                   size: 18,
                                 ),
-                                Text(controllerr.locations[index]["rating"]),
+                                Text(
+                                  controllerr.locations[index]["rating"],
+                                ),
                               ],
                             ),
                           ],
@@ -97,12 +126,12 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            Colors.blue, // Background color
+                                            Colors.red, // Background color
                                         foregroundColor:
                                             Colors.white, // Text color
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 10,
-                                          vertical: 0,
+                                          vertical: 10,
                                         ),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
@@ -123,11 +152,11 @@ class BottomListTiles extends GetView<BottomListTiles> {
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    Colors.blue, // Background color
+                                    Colors.green, // Background color
                                 foregroundColor: Colors.white, // Text color
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                  vertical: 0,
+                                  horizontal: 10,
+                                  vertical: 10,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
