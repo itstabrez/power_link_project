@@ -1,0 +1,158 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:power_link_project/Controllers/controllers_google_map.dart';
+
+class BottomListTiles extends GetView<BottomListTiles> {
+  BottomListTiles({super.key});
+
+  final controllerr = Get.put(ControllersGoogleMapScreen());
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: controllerr.locations.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            // Handle tap event
+          },
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Image at the bottom
+                Image.asset(
+                  controllerr.images[index],
+                  fit: BoxFit.cover,
+                  width: 130,
+                  height: 150,
+                ),
+                Expanded(
+                  child: ListTile(
+                    title: Text(
+                      controllerr.locations[index]["name"],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controllerr.locations[index]["address"],
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                          ),
+                          maxLines: 2,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.access_time,
+                                  size: 18,
+                                ),
+                                Text(controllerr.locations[index]
+                                    ["availablity"]),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_pin,
+                                  size: 18,
+                                ),
+                                Text(controllerr.locations[index]["distance"]),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  size: 18,
+                                ),
+                                Text(controllerr.locations[index]["rating"]),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Get Direction Button
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 200),
+                              child: controllerr.isLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Colors.blue, // Background color
+                                        foregroundColor:
+                                            Colors.white, // Text color
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 0,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              10), // Rounded corners
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        'Get Direction',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                            // Slot Booking Button
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Colors.blue, // Background color
+                                foregroundColor: Colors.white, // Text color
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 0,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      10), // Rounded corners
+                                ),
+                              ),
+                              child: const Text(
+                                'Book Slot',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

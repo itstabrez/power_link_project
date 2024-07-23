@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: "PowerLink",
       debugShowCheckedModeBanner: false,
-      home: ScreenHomePage(),
+      home: ScreenGoogleMapScreen(),
       getPages: AppPages.pages,
     );
   }
