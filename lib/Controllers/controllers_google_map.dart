@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -8,20 +6,13 @@ class ControllersGoogleMapScreen extends GetxController {
       const LatLng(25.609594144761225, 85.1408685649943);
 
   var isLoading = false.obs;
-  var isBottomTileLoading = true.obs;
 
   var markers = <Marker>{}.obs;
 
   @override
   void onInit() {
     super.onInit();
-    _startLoading();
     loadNearbyChargingStations();
-  }
-
-  void _startLoading() async {
-    await Future.delayed(const Duration(seconds: 1));
-    isBottomTileLoading.value = false;
   }
 
   final images = [

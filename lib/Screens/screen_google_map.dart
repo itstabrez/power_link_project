@@ -34,11 +34,7 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: Obx(
-                () => controllerr.isBottomTileLoading.value
-                    ? const Center(child: CircularProgressIndicator.adaptive())
-                    : BottomListTiles(),
-              ),
+              child: BottomListTiles(),
             ),
           ],
         ),
