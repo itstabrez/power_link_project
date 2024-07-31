@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
+import 'package:power_link_project/Screens/screen_charging_station_details_page.dart';
 import 'package:power_link_project/Screens/screen_slot_booking.dart';
 
-class BottomListTiles extends StatelessWidget {
+class BottomListTiles extends GetView<BottomListTiles> {
   BottomListTiles({super.key});
 
   final controllerr = Get.put(ControllersGoogleMapScreen());
@@ -28,7 +29,7 @@ class BottomListTiles extends StatelessWidget {
             // Handle tap event
           },
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -93,7 +94,7 @@ class BottomListTiles extends StatelessWidget {
                                 size: 18,
                               ),
                               Text(
-                                controllerr.locations[index]["distance"],
+                                '${controllerr.locations[index]["distance"].toString()} km',
                               ),
                             ],
                           ),
@@ -104,7 +105,8 @@ class BottomListTiles extends StatelessWidget {
                                 size: 18,
                               ),
                               Text(
-                                controllerr.locations[index]["rating"],
+                                controllerr.locations[index]["rating"]
+                                    .toString(),
                               ),
                             ],
                           ),
@@ -122,7 +124,12 @@ class BottomListTiles extends StatelessWidget {
                             child: controllerr.isLoading.value
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      controllerr.moveToLocation(
+                                        controllerr.locations[index]['lat'],
+                                        controllerr.locations[index]['lng'],
+                                      );
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
                                           Colors.red, // Background color
@@ -148,8 +155,55 @@ class BottomListTiles extends StatelessWidget {
                           ),
                           // Slot Booking Button
                           ElevatedButton(
-                            onPressed: () =>
-                                Get.toNamed(ScreenSlotBooking.pageId),
+                            onPressed: () => Get.toNamed(
+                              ScreenChargingStationDetailsPage.pageId,
+                              arguments: {
+                                'images': [
+                                  controllerr.images[index],
+                                  controllerr.images[index],
+                                ],
+                                'stationName': controllerr.locations[index]
+                                    ["name"],
+                                'address': controllerr.locations[index]
+                                    ["address"],
+                                'rating': controllerr.locations[index]
+                                    ["rating"],
+                                'distance': controllerr.locations[index]
+                                    ["distance"],
+                                'availablity': controllerr.locations[index]
+                                    ["availablity"],
+                                'amenities': [
+                                  'Cafe',
+                                  'Store',
+                                  'Park',
+                                  'Toilet',
+                                  'Food'
+                                ],
+                                'connectionTypes': [
+                                  {
+                                    'type': 'CCS2',
+                                    'power': 150,
+                                    'price': 0.05,
+                                    'taken': 0,
+                                    'total': 2,
+                                  },
+                                  {
+                                    'type': 'CCS',
+                                    'power': 120,
+                                    'price': 0.05,
+                                    'taken': 3,
+                                    'total': 3,
+                                  },
+                                  {
+                                    'type': 'Mennekers',
+                                    'power': 22,
+                                    'price': 0.02,
+                                    'taken': 0,
+                                    'total': 2,
+                                  },
+                                ],
+                              },
+                            ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green, // Background color
                               foregroundColor: Colors.white, // Text color

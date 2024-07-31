@@ -1,18 +1,24 @@
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class ControllersGoogleMapScreen extends GetxController {
-  final LatLng chargingStation =
+  final LatLng defaultChargingStation =
       const LatLng(25.609594144761225, 85.1408685649943);
 
   var isLoading = false.obs;
+  final username = "Tabrez Alam";
 
   var markers = <Marker>{}.obs;
+
+  late GoogleMapController mapController;
+  LatLng? currentLocation;
 
   @override
   void onInit() {
     super.onInit();
     loadNearbyChargingStations();
+    // getCurrentLocation();
   }
 
   final images = [
@@ -31,8 +37,8 @@ class ControllersGoogleMapScreen extends GetxController {
       'lng': 85.13900841754068,
       'address': "Mithapur Farm Area, Mithapur, Bihar 800001",
       'availablity': "24*7",
-      "distance": "2.5 km",
-      'rating': "4.2",
+      "distance": 2.5,
+      'rating': 4.2,
     },
     {
       'id': '2',
@@ -41,8 +47,8 @@ class ControllersGoogleMapScreen extends GetxController {
       'lng': 85.13743763368815,
       'address': "Bander Bagicha, Chowk, Patna, Bihar 800001",
       'availablity': "24*7",
-      "distance": "1.5 km",
-      'rating': "4.5",
+      "distance": 1.5,
+      'rating': 2.2,
     },
     {
       'id': '3',
@@ -51,8 +57,8 @@ class ControllersGoogleMapScreen extends GetxController {
       'lng': 85.1243386852289,
       'address': "Rajapur, Buddha Colony, Patna, Bihar 800001",
       'availablity': "24*7",
-      'distance': "4.8 km",
-      'rating': "4.3",
+      'distance': 4.8,
+      'rating': 4.3,
     },
     {
       'id': '4',
@@ -61,18 +67,18 @@ class ControllersGoogleMapScreen extends GetxController {
       'lng': 85.1374023175998,
       'address': "Budh Vihar, Fraser Road Area, Patna, Bihar 800001",
       'availablity': "24*7",
-      "distance": "2 km",
-      'rating': "4.4",
+      "distance": 2.2,
+      'rating': 4.4,
     },
     {
       'id': '5',
       'name': 'My Charging Station',
-      'lat': 25.602617757025858,
-      'lng': 85.13900841754068,
+      'lat': 25.58737801383396,
+      'lng': 84.9821448532907,
       'address': "Macet College Neoraganj, Bihar 800001",
       'availablity': "24*7",
-      "distance": "2.5 km",
-      'rating': "4.2",
+      "distance": 2.5,
+      'rating': 4.2,
     },
   ];
 
@@ -84,6 +90,30 @@ class ControllersGoogleMapScreen extends GetxController {
         infoWindow: InfoWindow(title: location['name'] as String),
       );
       markers.add(marker);
+    }
+  }
+
+  void onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+    if (currentLocation != null) {
+      moveToLocation(currentLocation!.latitude, currentLocation!.longitude);
+    }
+  }
+
+  void moveToLocation(double lat, double lng) {
+    mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, lng)));
+  }
+
+  void getCurrentLocation() async {
+    final location = Location();
+    try {
+      final currentLocationData = await location.getLocation();
+      currentLocation =
+          LatLng(currentLocationData.latitude!, currentLocationData.longitude!);
+      update(); // Notify listeners
+    } catch (e) {
+      print('Could not get current location: $e');
+      currentLocation = defaultChargingStation; // Fallback to default
     }
   }
 }
