@@ -16,7 +16,7 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.0), // here the desired height
+        preferredSize: const Size.fromHeight(70.0), // here the desired height
         child: AppBar(
           centerTitle: false,
           title: Column(
@@ -29,25 +29,27 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
                     minRadius: 30,
                   ),
                   const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controllerr.username,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controllerr.username,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        'Find your nearest charging point',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 121, 121, 121),
+                        const Text(
+                          'Find your nearest charging point',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 121, 121, 121),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

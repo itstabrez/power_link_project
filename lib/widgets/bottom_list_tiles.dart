@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
 import 'package:power_link_project/Screens/screen_charging_station_details_page.dart';
-import 'package:power_link_project/Screens/screen_slot_booking.dart';
 
 class BottomListTiles extends GetView<BottomListTiles> {
   BottomListTiles({super.key});
@@ -181,25 +180,11 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                 ],
                                 'connectionTypes': [
                                   {
-                                    'type': 'CCS2',
-                                    'power': 150,
-                                    'price': 0.05,
-                                    'taken': 0,
-                                    'total': 2,
-                                  },
-                                  {
-                                    'type': 'CCS',
-                                    'power': 120,
-                                    'price': 0.05,
-                                    'taken': 3,
-                                    'total': 3,
-                                  },
-                                  {
                                     'type': 'Mennekers',
                                     'power': 22,
-                                    'price': 0.02,
+                                    'price': 5,
                                     'taken': 0,
-                                    'total': 2,
+                                    'total': 3,
                                   },
                                 ],
                               },
