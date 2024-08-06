@@ -13,19 +13,22 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args = Get.arguments ?? {};
+    final String username = args['username'] ?? 'User';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0), // here the desired height
         child: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: false,
           title: Column(
             children: [
               Row(
                 children: [
                   const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://media.licdn.com/dms/image/D5603AQGaCnp3DljCVQ/profile-displayphoto-shrink_800_800/0/1721383822804?e=1727308800&v=beta&t=CQTSdiJcIlV8Pho5lh6leKI0CIBX9S1nVHS-m4s29Ps'),
+                    backgroundImage:
+                        NetworkImage("https://i.pravatar.cc/150?img=3"),
                     minRadius: 30,
                   ),
                   const SizedBox(width: 10),
@@ -34,16 +37,16 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controllerr.username,
+                          "Welcome, $username",
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const Text(
                           'Find your nearest charging point',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: Color.fromARGB(255, 121, 121, 121),
                           ),

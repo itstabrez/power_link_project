@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:power_link_project/api/things_speak_api.dart';
 
 class ControllerChargingStationDetailsPage extends GetxController {
   var images = <String>[].obs;
@@ -10,6 +11,10 @@ class ControllerChargingStationDetailsPage extends GetxController {
   var availablity = ''.obs;
   var amenities = <String>[].obs;
   var connectionTypes = <Map<String, dynamic>>[].obs;
+  // API CALL
+  var vacantSpaces = 3.obs;
+  var total = 3;
+  var field1Data = <int>[].obs;
 
   @override
   void onInit() {
@@ -24,6 +29,20 @@ class ControllerChargingStationDetailsPage extends GetxController {
       availablity.value = arguments['availablity'] ?? '';
       amenities.value = arguments['amenities'] ?? [];
       connectionTypes.value = arguments['connectionTypes'] ?? [];
+    }
+    fetchVacantSpaces();
+  }
+
+  // API CALL
+  final ThingSpeakService _thingSpeakService = ThingSpeakService();
+
+  void fetchVacantSpaces() async {
+    try {
+      int spaces = await _thingSpeakService.getVacantSpaces();
+      vacantSpaces.value = spaces;
+    } catch (e) {
+      vacantSpaces.value = 0;
+      print('Error fetching data: $e');
     }
   }
 }

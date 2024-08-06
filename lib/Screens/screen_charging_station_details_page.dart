@@ -106,26 +106,29 @@ class ScreenChargingStationDetailsPage
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Obx(() => Column(
-                        children: controllerr.connectionTypes.map((connection) {
-                          return Card(
-                            child: ListTile(
-                              title: Text(connection['type'] as String),
-                              subtitle: Text(
-                                  '${connection['power']}kw (Rs${connection['price']}/kw)'),
-                              trailing: Text(
-                                '${connection['taken']}/${connection['total']} taken',
-                                style: TextStyle(
-                                  color: (connection['taken'] as int) <
-                                          (connection['total'] as int)
-                                      ? Colors.green
-                                      : Colors.red,
-                                ),
+                  Obx(
+                    () => Column(
+                      children: controllerr.connectionTypes.map((connection) {
+                        return Card(
+                          child: ListTile(
+                            title: Text(connection['type'] as String),
+                            subtitle: Text(
+                                '${connection['power']}kw (Rs${connection['price']}/kw)'),
+                            trailing: Text(
+                              '${controllerr.total - controllerr.vacantSpaces.value}/${controllerr.total} taken',
+                              style: TextStyle(
+                                color: (controllerr.total -
+                                            controllerr.vacantSpaces.value) <
+                                        (controllerr.total)
+                                    ? Colors.green
+                                    : Colors.red,
                               ),
                             ),
-                          );
-                        }).toList(),
-                      )),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   const Text(
                     'Review',

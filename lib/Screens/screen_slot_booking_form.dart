@@ -19,7 +19,7 @@ class ScreenSlotBooking extends GetView<ControllersSlotBookingForm> {
         child: Form(
           key: controllerr.formKey,
           child: Column(
-            children: [
+            children: <Widget>[
               TextFormField(
                 controller: controllerr.nameController,
                 decoration: InputDecoration(
@@ -92,7 +92,7 @@ class ScreenSlotBooking extends GetView<ControllersSlotBookingForm> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: controllerr.vehicleController,
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   labelText: 'Vehicle Number',
                   border: OutlineInputBorder(
@@ -108,18 +108,69 @@ class ScreenSlotBooking extends GetView<ControllersSlotBookingForm> {
                 ),
                 validator: (value) {
                   if (value!.isEmpty || value.length != 10) {
-                    return 'Please enter a valid mobile number';
+                    return 'Please enter a valid vehicle number';
                   }
                   return null;
                 },
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Obx(
+                      () => TextFormField(
+                        controller: controllerr.currentDateController.value,
+                        decoration: InputDecoration(
+                          label: const Text("Select Date"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                            borderSide: BorderSide(color: Colors.blueAccent),
+                          ),
+                        ),
+                        readOnly: true,
+                        onTap: () => controllerr.pickDate(context),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Obx(
+                      () => TextFormField(
+                        controller: controllerr.currentTimeController.value,
+                        decoration: InputDecoration(
+                          label: const Text("Select Time"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                            borderSide: BorderSide(color: Colors.blueAccent),
+                          ),
+                        ),
+                        readOnly: true,
+                        onTap: () => controllerr.pickTime(context),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: controllerr.addressController,
                 decoration: InputDecoration(
                   labelText: 'Address',
-                  border: const OutlineInputBorder(),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
+                  ),
                   focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
                     borderSide: BorderSide(color: Colors.blueAccent),
                   ),
                   labelStyle: TextStyle(color: Colors.grey[700]),

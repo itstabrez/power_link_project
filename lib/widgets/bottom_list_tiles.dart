@@ -28,7 +28,7 @@ class BottomListTiles extends GetView<BottomListTiles> {
             // Handle tap event
           },
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -47,7 +47,7 @@ class BottomListTiles extends GetView<BottomListTiles> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    controllerr.images[index],
+                    controllerr.locations[index]['images'][0],
                     fit: BoxFit.cover,
                     width: 130,
                     height: 150,
@@ -152,15 +152,16 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                     ),
                                   ),
                           ),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           // Slot Booking Button
                           ElevatedButton(
                             onPressed: () => Get.toNamed(
                               ScreenChargingStationDetailsPage.pageId,
                               arguments: {
-                                'images': [
-                                  controllerr.images[index],
-                                  controllerr.images[index],
-                                ],
+                                'images': controllerr.locations[index]
+                                    ['images'],
                                 'stationName': controllerr.locations[index]
                                     ["name"],
                                 'address': controllerr.locations[index]
@@ -171,22 +172,10 @@ class BottomListTiles extends GetView<BottomListTiles> {
                                     ["distance"],
                                 'availablity': controllerr.locations[index]
                                     ["availablity"],
-                                'amenities': [
-                                  'Cafe',
-                                  'Store',
-                                  'Park',
-                                  'Toilet',
-                                  'Food'
-                                ],
-                                'connectionTypes': [
-                                  {
-                                    'type': 'Mennekers',
-                                    'power': 22,
-                                    'price': 5,
-                                    'taken': 0,
-                                    'total': 3,
-                                  },
-                                ],
+                                'amenities': controllerr.locations[index]
+                                    ['amenities'],
+                                'connectionTypes': controllerr.locations[index]
+                                    ['connectionTypes']
                               },
                             ),
                             style: ElevatedButton.styleFrom(
