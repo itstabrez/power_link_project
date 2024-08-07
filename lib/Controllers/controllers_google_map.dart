@@ -144,15 +144,19 @@ class ControllersGoogleMapScreen extends GetxController {
     }
   }
 
+  void moveToLocation(double lat, double lng) {
+    mapController.animateCamera(
+      CameraUpdate.newLatLng(
+        LatLng(lat, lng),
+      ),
+    );
+  }
+
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
     if (currentLocation != null) {
       moveToLocation(currentLocation!.latitude, currentLocation!.longitude);
     }
-  }
-
-  void moveToLocation(double lat, double lng) {
-    mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, lng)));
   }
 
   void getCurrentLocation() async {

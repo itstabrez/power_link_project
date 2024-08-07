@@ -3,6 +3,7 @@ import 'package:power_link_project/Screens/screen_charging_station_details_page.
 import 'package:power_link_project/Screens/screen_google_map.dart';
 import 'package:power_link_project/Screens/screen_login_page.dart';
 import 'package:power_link_project/Screens/screen_slot_booking_form.dart';
+import 'package:power_link_project/Screens/successful_booking_page.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -21,6 +22,10 @@ class AppPages {
     GetPage(
       name: ScreenChargingStationDetailsPage.pageId,
       page: () => ScreenChargingStationDetailsPage(),
+    ),
+    GetPage(
+      name: ScreenSuccessfulBooking.pageId,
+      page: () => ScreenSuccessfulBooking(),
     ),
   ];
 }
