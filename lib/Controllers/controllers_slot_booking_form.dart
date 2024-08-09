@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:power_link_project/Screens/successful_booking_page.dart';
 
 class ControllersSlotBookingForm extends GetxController {
   final formKey = GlobalKey<FormState>();
-  var submittedData = <Map<String, dynamic>>[].obs;
-
   final nameController = TextEditingController();
   final emailController = TextEditingController();
-
   final mobileController = TextEditingController();
   final addressController = TextEditingController();
   final vehicleController = TextEditingController();
@@ -64,31 +60,22 @@ class ControllersSlotBookingForm extends GetxController {
 
   List<String> paymentModes = ['Cash', 'Card', 'UPI'];
 
-  void submitForm() {
-    if (formKey.currentState!.validate()) {
-      String name = nameController.text;
-      String email = emailController.text;
-      String mobile = mobileController.text;
-      String address = addressController.text;
-      String selectedPaymentMode = paymentMode.value;
+  // void submitForm() {
+  //   // if (formKey.currentState!.validate()) {
+  //   String name = nameController.text;
+  //   String email = emailController.text;
+  //   String mobile = mobileController.text;
+  //   String address = addressController.text;
+  //   String selectedPaymentMode = paymentMode.value;
 
-      // Store submitted data
-      submittedData.add({
-        'name': name,
-        'email': email,
-        'mobile': mobile,
-        'address': address,
-        'paymentMode': selectedPaymentMode,
-      });
-
-      // Navigate to the success page with form data
-      Get.toNamed(ScreenSuccessfulBooking.pageId, arguments: {
-        'name': name,
-        'email': email,
-        'mobile': mobile,
-        'address': address,
-        'paymentMode': selectedPaymentMode,
-      });
-    }
-  }
+  //   // Navigate to the success page with form data
+  //   Get.toNamed(ScreenSuccessfulBooking.pageId, arguments: {
+  //     'name': name,
+  //     'email': email,
+  //     'mobile': mobile,
+  //     'address': address,
+  //     'paymentMode': selectedPaymentMode,
+  //   });
+  // }
 }
+// }

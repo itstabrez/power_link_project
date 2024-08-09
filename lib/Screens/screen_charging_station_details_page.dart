@@ -153,7 +153,12 @@ class ScreenChargingStationDetailsPage
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.white),
                       onPressed: () {
-                        Get.toNamed(ScreenSlotBooking.pageId);
+                        Get.toNamed(
+                          ScreenSlotBooking.pageId,
+                          arguments: {
+                            'stationName': controllerr.stationName.value,
+                          },
+                        );
                       },
                       child: const Text('Book slot'),
                     ),

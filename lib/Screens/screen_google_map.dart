@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
+import 'package:power_link_project/Screens/notification_page.dart';
 import 'package:power_link_project/widgets/bottom_list_tiles.dart';
 import 'package:power_link_project/widgets/my_drawer.dart';
 
@@ -60,7 +61,9 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => ScreenNotificationPage());
+              },
               icon: const Icon(Icons.notifications, color: Colors.blue),
             ),
             IconButton(

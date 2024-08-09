@@ -11,6 +11,7 @@ class ScreenSuccessfulBooking extends GetView<ScreenSuccessfulBooking> {
     final Map<String, dynamic> args = Get.arguments ?? {};
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Success'),
         backgroundColor: Colors.greenAccent,
         elevation: 0,
@@ -53,6 +54,7 @@ class ScreenSuccessfulBooking extends GetView<ScreenSuccessfulBooking> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    // Navigate to the home page or another page
                     Get.offAllNamed(ScreenGoogleMapScreen
                         .pageId); // Navigate to home page or another page
                   },

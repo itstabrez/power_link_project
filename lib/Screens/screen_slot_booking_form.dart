@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:power_link_project/Controllers/controllers_notification.dart';
 import 'package:power_link_project/Controllers/controllers_slot_booking_form.dart';
+import 'package:power_link_project/Screens/successful_booking_page.dart';
+import 'package:power_link_project/model/model_notification_screen.dart';
 
 class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
   ScreenSlotBooking({super.key});
   static String pageId = "/ScreenSlotBooking";
   final controllerr = Get.put(ControllersSlotBookingForm());
 
+  final ControllersNotificationScreen notificationController =
+      Get.find<ControllersNotificationScreen>();
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args = Get.arguments ?? {};
     return Scaffold(
       appBar: AppBar(
         title: const Text('Booking Form'),
@@ -215,7 +221,27 @@ class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: controllerr.submitForm,
+                  onPressed: () {
+                    // Validate form
+                    // if (controllerr.formKey.currentState!.validate()) {
+                    // Create a new notification
+                    notificationController.addNotification(NotificationModel(
+                      stationName: args['stationName'],
+                      date: controllerr.currentDateController.value.text,
+                      time: controllerr.currentDateController.value.text,
+                      name: controllerr.nameController.value.text,
+                      vehicleNo: controllerr.vehicleController.value.text,
+                    ));
+                    // Navigate to the success page with form data
+                    Get.toNamed(ScreenSuccessfulBooking.pageId, arguments: {
+                      'name': controllerr.nameController.text,
+                      'email': controllerr.emailController.text,
+                      'mobile': controllerr.mobileController.text,
+                      'address': controllerr.addressController.text,
+                      'paymentMode': controllerr.paymentMode.value,
+                    });
+                    // }
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blueAccent,
