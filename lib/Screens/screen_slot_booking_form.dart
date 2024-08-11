@@ -99,6 +99,7 @@ class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: controllerr.vehicleController,
+                  textCapitalization: TextCapitalization.characters,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: 'Vehicle Number',
@@ -169,6 +170,7 @@ class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: controllerr.addressController,
+                  keyboardType: TextInputType.streetAddress,
                   decoration: InputDecoration(
                     labelText: 'Address',
                     border: const OutlineInputBorder(
