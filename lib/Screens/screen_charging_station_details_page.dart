@@ -5,7 +5,7 @@ import 'package:power_link_project/Controllers/controllers.charging_station_deta
 import 'package:power_link_project/Screens/screen_slot_booking_form.dart';
 
 class ScreenChargingStationDetailsPage
-    extends GetView<ControllerChargingStationDetailsPage> {
+    extends GetView<ScreenChargingStationDetailsPage> {
   final ControllerChargingStationDetailsPage controllerr =
       Get.put(ControllerChargingStationDetailsPage());
   static String pageId = "/ScreenChargingStationDetailsPage";
@@ -114,14 +114,29 @@ class ScreenChargingStationDetailsPage
                             title: Text(connection['type'] as String),
                             subtitle: Text(
                                 '${connection['power']}kw (Rs${connection['price']}/kw)'),
-                            trailing: Text(
-                              '${controllerr.total - controllerr.vacantSpaces.value}/${controllerr.total} taken',
-                              style: TextStyle(
-                                color: (controllerr.total -
-                                            controllerr.vacantSpaces.value) <
-                                        (controllerr.total)
-                                    ? Colors.green
-                                    : Colors.red,
+                            trailing: SizedBox(
+                              width:
+                                  120, // Add a fixed width to the trailing row
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    '${controllerr.total - controllerr.vacantSpaces.value}/${controllerr.total} taken',
+                                    style: TextStyle(
+                                      color: (controllerr.total -
+                                                  controllerr
+                                                      .vacantSpaces.value) <
+                                              (controllerr.total)
+                                          ? Colors.green
+                                          : Colors.red,
+                                    ),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        controllerr.fetchVacantSpaces();
+                                      },
+                                      icon: const Icon(Icons.refresh_outlined))
+                                ],
                               ),
                             ),
                           ),

@@ -109,13 +109,13 @@ class ControllersGoogleMapScreen extends GetxController {
     },
     {
       'images': [
-        'assets/images/macet/2.jpg',
+        'assets/images/macet/2.png',
         'assets/images/macet/s1.jpg',
         'assets/images/macet/s2.jpg',
         'assets/images/macet/s3.jpg'
       ],
       'id': '5',
-      'name': 'PowerLink Station',
+      'name': 'MACET Charging Station',
       'lat': 25.58737801383396,
       'lng': 84.9821448532907,
       'address': "Macet College Neoraganj, Bihar 800001",
