@@ -221,14 +221,18 @@ class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
                       if (value == null || value == 'Select Payment Mode') {
                         return 'Please select a valid payment mode';
                       } else if (value == "UPI" || value.contains("Card")) {
-                        Get.snackbar(
-                          "We're not accepting this payment method for now",
-                          "You selected $value as your payment method",
-                          snackPosition: SnackPosition.TOP,
-                          backgroundColor: Colors.blue,
-                          colorText: Colors.white,
-                        );
-                        return null; // Return null to indicate validation is passed
+                        // Show snackbar on validation error
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          Get.snackbar(
+                            "We're not accepting this payment method for now",
+                            "You selected $value as your payment method",
+                            snackPosition: SnackPosition.TOP,
+                            backgroundColor: Colors.blue,
+                            colorText: Colors.white,
+                          );
+                        });
+                        // Return error message to prevent navigation
+                        return 'Payment method not supported';
                       } else {
                         return null;
                       }
