@@ -7,7 +7,6 @@ class ControllersGoogleMapScreen extends GetxController {
       const LatLng(25.609594144761225, 85.1408685649943);
 
   var isLoading = false.obs;
-  final username = "Tabrez Alam";
 
   var markers = <Marker>{}.obs;
 

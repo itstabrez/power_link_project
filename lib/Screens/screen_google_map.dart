@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:power_link_project/Controllers/controllers.login_page.dart';
 import 'package:power_link_project/Controllers/controllers_google_map.dart';
 import 'package:power_link_project/Screens/notification_page.dart';
 import 'package:power_link_project/widgets/bottom_list_tiles.dart';
@@ -11,11 +12,10 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
   static String pageId = "/ScreenGoogleMap";
 
   final controllerr = Get.put(ControllersGoogleMapScreen());
+  final userController = Get.find<ControllersLoginPage>();
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> args = Get.arguments ?? {};
-    final String username = args['username'] ?? 'User';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
@@ -38,7 +38,7 @@ class ScreenGoogleMapScreen extends GetView<ScreenGoogleMapScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome, $username",
+                          'Welcome, ${userController.username.value}',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

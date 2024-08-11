@@ -217,6 +217,22 @@ class ScreenSlotBooking extends GetView<ScreenSlotBooking> {
                       hintText: 'Select payment mode',
                       hintStyle: TextStyle(color: Colors.grey[400]),
                     ),
+                    validator: (value) {
+                      if (value == null || value == 'Select Payment Mode') {
+                        return 'Please select a valid payment mode';
+                      } else if (value == "UPI" || value.contains("Card")) {
+                        Get.snackbar(
+                          "We're not accepting this payment method for now",
+                          "You selected $value as your payment method",
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: Colors.blue,
+                          colorText: Colors.white,
+                        );
+                        return null; // Return null to indicate validation is passed
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),

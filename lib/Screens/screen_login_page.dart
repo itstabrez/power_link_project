@@ -64,10 +64,7 @@ class ScreenLoginPage extends StatelessWidget {
                 Obx(() => ElevatedButton(
                       onPressed: controllerr.isValid
                           ? () {
-                              Get.offAllNamed(ScreenGoogleMapScreen.pageId,
-                                  arguments: {
-                                    'username': controllerr.username.value,
-                                  });
+                              Get.offAllNamed(ScreenGoogleMapScreen.pageId);
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
