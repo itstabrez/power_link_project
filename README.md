@@ -1,6 +1,6 @@
 # power_link_project
 
-A new Flutter project.
+A new personal flutter project.
 
 ## Getting Started
 
